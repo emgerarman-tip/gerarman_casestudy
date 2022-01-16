@@ -1,0 +1,50 @@
+Issue while building the feature
+
+Traceback (most recent call last):
+  File "src/genie/cli/commands/learn.py", line 343, in genie.cli.commands.learn.LearnCommand._retrieve_ops
+  File "/home/devasc/.local/lib/python3.8/site-packages/genie/libs/ops/ospf/iosxe/ospf.py", line 1017, in learn
+    self.make(final_call=True)
+  File "/home/devasc/.local/lib/python3.8/site-packages/genie/ops/base/base.py", line 101, in make
+    self.maker.make(*args, **kwargs)
+  File "src/genie/ops/base/maker.py", line 312, in genie.ops.base.maker.Maker.make
+  File "src/genie/ops/base/maker.py", line 418, in genie.ops.base.maker.Maker._call_parser
+  File "src/genie/metaparser/_metaparser.py", line 289, in genie.metaparser._metaparser.MetaParser.parse
+  File "src/genie/metaparser/_metaparser.py", line 284, in genie.metaparser._metaparser.MetaParser.parse
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 306, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 277, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 376, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 350, in genie.metaparser.util.schemaengine.Schema.validate
+  File "src/genie/metaparser/util/schemaengine.py", line 411, in genie.metaparser.util.schemaengine.Schema.validate
+genie.metaparser.util.exceptions.SchemaUnsupportedKeyError: vrf.default.address_family.ipv4.instance.1.areas.0.0.0.0.database.lsa_types.5.lsas.0.0.0.0 1.1.1.1.ospfv2.body.external.topologies.0: Unsupported keys: ['tos']

@@ -1,0 +1,21 @@
+---
+- hosts: routers
+  gather_facts: false
+  connection: network_cli
+  become_method: enable
+  
+  tasks:
+    - name: IT Department Access List
+      when: ansible_host == "192.168.20.1"
+      ios_config:
+        lines: 
+          - deny 192.168.30.0 0.0.0.255
+          - permit any
+        parents: ip access-list standard Employee
+   
+    - name: Interface F0/1 access group
+      when: ansible_host == "192.168.20.1"
+      ios_config:
+        lines: 
+          - int f0/0
+          - ip access-group Employee out

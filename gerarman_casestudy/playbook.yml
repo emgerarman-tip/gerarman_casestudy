@@ -1,0 +1,82 @@
+---
+- hosts: routers
+  gather_facts: no
+  connection: network_cli
+  become_method: enable
+
+  tasks:
+    - name: Configure local AAA authentication for console access
+      ios_config:
+        commands:
+          - aaa new-model
+          - aaa authentication login default local
+
+    - name: Configure the line console to use the defined AAA authentication method
+      ios_config:
+        commands:
+          - login authentication default
+        parents: line console 0
+
+    - name: Configure a named list AAA authentication method for the vty lines
+      ios_config:
+        commands:
+          - aaa authentication login SSH-LOGIN local
+
+    - name: Configure the vty lines to use the defined AAA authentication method
+      ios_config:
+        commands:
+          - login authentication SSH-LOGIN
+        parents: line vty 0 4
+
+    - name: Router 1 OSPF configuration
+      when: ansible_host == "10.0.2.1"
+      ios_config:
+        parents: router ospf 1
+        lines:
+          - router-id 1.1.1.1
+          - network 192.168.3.0 0.0.0.255 area 0
+          - network 192.168.5.0 0.0.0.255 area 0
+          - network 10.1.3.0 0.0.0.3 area 0
+          - network 10.0.2.0 0.0.0.3 area 0
+          - passive-interface FastEthernet0/0
+          - passive-interface FastEthernet0/1
+
+    - name: Router 2 OSPF configuration
+      when: ansible_host == "10.2.4.1"
+      ios_config:
+        parents: router ospf 1
+        lines:
+          - router-id 2.2.2.2
+          - network 10.0.2.0 0.0.0.3 area 0
+          - network 192.168.20.0 0.0.0.255 area 0
+          - network 10.2.4.0 0.0.0.3 area 0
+          - passive-interface FastEthernet0/0
+          - default-information originate
+
+    - name: Router 3 OSPF configuration
+      when: ansible_host == "10.2.4.2"
+      ios_config:
+        parents: router ospf 1
+        lines:
+          - router-id 3.3.3.3
+          - network 10.2.4.0 0.0.0.3 area 0
+          - network 10.1.3.0 0.0.0.3 area 0
+          - network 192.168.30.0 0.0.0.255 area 0
+          - network 192.168.40.0 0.0.0.255 area 0
+          - passive-interface FastEthernet0/1
+          - passive-interface FastEthernet1/0
+
+    - name: IT Department Access List
+      when: ansible_host == "192.168.20.1"
+      ios_config:
+        lines: 
+          - deny 192.168.30.0 0.0.0.255
+          - permit any
+        parents: ip access-list standard Students
+   
+    - name: Interface F0/1 access group
+      when: ansible_host == "192.168.20.1"
+      ios_config:
+        lines: 
+          - int f0/0
+          - ip access-group Students out

@@ -1,0 +1,98 @@
+{
+  "_exclude": [],
+  "attributes": null,
+  "commands": null,
+  "connections": null,
+  "context_manager": {},
+  "info": {
+    "acls": {
+      "Employee": {
+        "aces": {
+          "10": {
+            "actions": {
+              "forwarding": "deny"
+            },
+            "matches": {
+              "l3": {
+                "ipv4": {
+                  "protocol": "ipv4",
+                  "source_ipv4_network": {
+                    "192.168.30.0 0.0.0.255": {
+                      "source_ipv4_network": "192.168.30.0 0.0.0.255"
+                    }
+                  }
+                }
+              }
+            },
+            "name": "10",
+            "statistics": {
+              "matched_packets": 18
+            }
+          },
+          "20": {
+            "actions": {
+              "forwarding": "permit"
+            },
+            "matches": {
+              "l3": {
+                "ipv4": {
+                  "protocol": "ipv4",
+                  "source_ipv4_network": {
+                    "any": {
+                      "source_ipv4_network": "any"
+                    }
+                  }
+                }
+              }
+            },
+            "name": "20"
+          }
+        },
+        "name": "Employee",
+        "type": "ipv4-acl-type"
+      },
+      "Students": {
+        "aces": {
+          "10": {
+            "actions": {
+              "forwarding": "deny"
+            },
+            "matches": {
+              "l3": {
+                "ipv4": {
+                  "protocol": "ipv4",
+                  "source_ipv4_network": {
+                    "192.168.30.0 0.0.0.255": {
+                      "source_ipv4_network": "192.168.30.0 0.0.0.255"
+                    }
+                  }
+                }
+              }
+            },
+            "name": "10"
+          },
+          "20": {
+            "actions": {
+              "forwarding": "permit"
+            },
+            "matches": {
+              "l3": {
+                "ipv4": {
+                  "protocol": "ipv4",
+                  "source_ipv4_network": {
+                    "any": {
+                      "source_ipv4_network": "any"
+                    }
+                  }
+                }
+              }
+            },
+            "name": "20"
+          }
+        },
+        "name": "Students",
+        "type": "ipv4-acl-type"
+      }
+    }
+  }
+}

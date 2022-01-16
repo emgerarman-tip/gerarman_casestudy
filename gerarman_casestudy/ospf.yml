@@ -1,0 +1,45 @@
+---
+
+- hosts: routers
+  gather_facts: false
+  connection: network_cli
+  become_method: enable
+
+  tasks:
+    - name: Router 1 OSPF configuration
+      when: ansible_host == "10.0.2.1"
+      ios_config:
+        parents: router ospf 1
+        lines:
+          - router-id 1.1.1.1
+          - network 192.168.3.0 0.0.0.255 area 0
+          - network 192.168.5.0 0.0.0.255 area 0
+          - network 10.1.3.0 0.0.0.3 area 0
+          - network 10.0.2.0 0.0.0.3 area 0
+          - passive-interface FastEthernet0/0
+          - passive-interface FastEthernet0/1
+
+    - name: Router 2 OSPF configuration
+      when: ansible_host == "10.2.4.1"
+      ios_config:
+        parents: router ospf 1
+        lines:
+          - router-id 2.2.2.2
+          - network 10.0.2.0 0.0.0.3 area 0
+          - network 192.168.20.0 0.0.0.255 area 0
+          - network 10.2.4.0 0.0.0.3 area 0
+          - passive-interface FastEthernet0/0
+          - default-information originate
+
+    - name: Router 3 OSPF configuration
+      when: ansible_host == "10.2.4.2"
+      ios_config:
+        parents: router ospf 1
+        lines:
+          - router-id 3.3.3.3
+          - network 10.2.4.0 0.0.0.3 area 0
+          - network 10.1.3.0 0.0.0.3 area 0
+          - network 192.168.30.0 0.0.0.255 area 0
+          - network 192.168.40.0 0.0.0.255 area 0
+          - passive-interface FastEthernet0/1
+          - passive-interface FastEthernet1/0
